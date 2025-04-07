@@ -1,0 +1,40 @@
+import pygame
+from os.path import join
+
+pygame.init()
+
+WIDTH = 800
+HEIGHT = 600
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+
+PLAYER = pygame.image.load(join('space_fight','spaceship.png','player.png')).convert_alpha()
+PLAYER = pygame.transform.scale(PLAYER, (80, 60))
+PLAYER_RECT = PLAYER.get_frect(center = (70, HEIGHT / 2))
+
+PLAYER2 = pygame.image.load(join('space_fight','spaceship.png','player.png')).convert_alpha()
+PLAYER2 = pygame.transform.scale(PLAYER2, (80, 60))
+PLAYER2 = pygame.transform.flip(PLAYER2, True, False)
+PLAYER_RECT2 = PLAYER2.get_frect(center = (WIDTH-70, HEIGHT / 2))
+
+BACKGROUND = pygame.image.load(join('space_fight','space_image','background.png')).convert_alpha()
+BACKGROUND = pygame.transform.scale(BACKGROUND, (WIDTH, HEIGHT - 40))
+
+
+
+
+def main():
+    run = True
+    WIN.blit(BACKGROUND, (0, 20))
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+       
+        WIN.blit(PLAYER, PLAYER_RECT)
+        WIN.blit(PLAYER2, PLAYER_RECT2)
+        
+        pygame.display.update()
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
